@@ -14,49 +14,59 @@ export GCP_PROJECT_ID=tf-test-$(date "+%Y%m%d%H%M")
 bash -x scripts/create_gcp_project.sh "${GCP_PROJECT_ID}"
 bash -x scripts/create_sa.sh "${GCP_PROJECT_ID}"
 ```
-3. Initialise this directory containing Terraform configuration files
+3. Start a Docker container
+- run `docker`
+- OR open this directory in VSCode
+
+4. Initialise this directory containing Terraform configuration files
 ```
 terraform init
 ```
-4. Validate configurations
+5. Validate configurations
 ```
 terraform validate
 ```
-5. Create an execution plan for a preview
+6. Create an execution plan for a preview
 ```
 terraform plan
 ```
-6. (Optional) Enable Cloud Resource Manager API and Compute Engine API
+7. (Optional) Enable Cloud Resource Manager API and Compute Engine API
 ```
 # to check enabled apis
 gcloud services list
 ```
-7. Execute the actions according to the plan
+8. Execute the actions according to the plan
 ```
 terraform apply
 ```
-8. Confirm that the VM has been created
+9. Confirm that the VM has been created
 ```
 gcloud compute instances list
 
 # list resources in a Terraform state
 terraform state list
 ```
-9. Review a plan to destroy the created objects
+10. Review a plan to destroy the created objects
 ```
 terraform plan -destroy
 ```
-10. Destroy all created objects
+11. Destroy all created objects
 ```
 terraform destroy
 ```
-11. Confirm that no objects exist
+12. Confirm that no objects exist
 ```
 terraform state list
 
 # below will prompt enabling Compute API when the API has been successfully disabled
 gcloud compute instances list
 ```
+13. Delete the GCP service account and GCP project
+```
+bash -x scripts/delete_sa.sh "${GCP_PROJECT_ID}"
+bash -x scripts/delete_gcp_project.sh "${GCP_PROJECT_ID}"
+```
+
 
 ## Appendix
 
