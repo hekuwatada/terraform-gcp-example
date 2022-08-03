@@ -1,4 +1,5 @@
 # Terraform GCP example
+A working example of creating GCP resources with Terraform in a Docker container
 
 ## Goals
 - [x] Use Terraform to create a resource in a GCP project
@@ -14,7 +15,7 @@ export GCP_PROJECT_ID=tf-test-$(date "+%Y%m%d%H%M")
 bash -x scripts/create_gcp_project.sh "${GCP_PROJECT_ID}"
 bash -x scripts/create_sa.sh "${GCP_PROJECT_ID}"
 ```
-3. Start a Docker container
+3. Start a Docker container with terraform
 - run `docker`
 - OR open this directory in VSCode
 
@@ -69,13 +70,6 @@ bash -x scripts/delete_gcp_project.sh "${GCP_PROJECT_ID}"
 
 
 ## Appendix
-
-### Prerequisite
-
-1. Initialise this directory containing Terraform configuration files
-```
-terraform init
-```
 
 ### Troubleshooting
 
